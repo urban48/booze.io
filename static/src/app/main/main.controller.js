@@ -32,16 +32,16 @@
 
     $scope.pour = function(cocktail) {
       cocktail.isActive = true;
-      $timeout(function() {
+      $http.get('/booze?drink=' + cocktail.code).then(function() {
         cocktail.isActive = false;
-      }, 1000);
+      });
     };
 
     $scope.lucky = function() {
       $scope.luckyActive = true;
-      $timeout(function() {
-        $scope.luckyActive = false;
-      }, 1000);
+      $http.get('/lucky').then(function() {
+         $scope.luckyActive = false;
+      });
     };
   }
 })();
